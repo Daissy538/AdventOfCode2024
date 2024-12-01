@@ -63,7 +63,6 @@ export class Puzzle1 extends Puzzle {
 
         lines.forEach((line) => {
             const lineItems = line.split(" ");
-            console.log(lineItems);
             left.push(Number(lineItems[0]));
             right.push(Number(lineItems[lineItems.length-1]));
         });

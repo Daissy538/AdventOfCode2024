@@ -1,4 +1,5 @@
-import { PuzzleResult } from "./PuzzleResult";
+import { PuzzleResult } from "./puzzleResult";
+import fs from 'fs'
 
 export enum PuzzleType{
     A,
@@ -21,8 +22,9 @@ export abstract class Puzzle {
         return this.puzzleNumber;
     }
 
-    public run (input: string, type: PuzzleType): PuzzleResult {
+    public run (filePath: string, type: PuzzleType): PuzzleResult {
         const startTime = Date.now();
+        const input = this.readTextFileToBuffer(filePath);
 
         try{
             let result = -1;
@@ -48,6 +50,11 @@ export abstract class Puzzle {
             console.error("Could not solve puzzle: "+ this.puzzleNumber, error);
             throw error;
         }
+    }
+
+    private readTextFileToBuffer(filePath: string): string{
+        const text = fs.readFileSync(filePath, { encoding: "utf8" });
+        return text;
     }
 
     private printResult(result: number, amount: number): void{
