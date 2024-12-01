@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Puzzle } from './puzzles/base/puzzleBase';
+import { Puzzle, PuzzlePart } from './puzzles/base/puzzleBase';
 import { PuzzleResult } from './puzzles/base/PuzzleResult';
 import { Puzzle1 } from './puzzles/puzzle_1';
 import {
@@ -20,10 +20,10 @@ const puzzles = ref<Puzzle[]>([]);
 
 puzzles.value.push(new Puzzle1(1));
 activePuzzle.value = puzzles.value[0] as Puzzle;
-console.log(puzzles.value);
 
 function runPuzzle(){
-  activePuzzle.value?.run(inputText.value);
+  activePuzzle.value?.run(inputText.value, PuzzlePart.ONE);
+  activePuzzle.value?.run(inputText.value, PuzzlePart.TWO);
 }
 
 </script>
@@ -75,8 +75,6 @@ function runPuzzle(){
         </div>
       </Listbox>
     </div>
-
-
   <div>
     <span>Input value</span>
     <textarea v-model="inputText" @change=""/>
@@ -85,7 +83,7 @@ function runPuzzle(){
   <button class="bg-green-600 text-white px-8 py-2 rounded-lg" @click="runPuzzle">Run puzzle</button>
 
   <div>
-    <span>Result: {{ result?.resultNumber }}</span>
+    <span>Result A: {{ result?.resultNumber }}</span>
   </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { Puzzle } from "./base/puzzleBase";
 
 export class Puzzle1 extends Puzzle {
-    protected solveB(input: string): number {
+    protected solvePartTwo(input: string): number {
         let board = this.readLines(input);
         board = this.sortBoard(board);
 
@@ -17,7 +17,7 @@ export class Puzzle1 extends Puzzle {
         return this.sumList(amountMatchesList);
     }
 
-    protected override solveA(input: string): number {
+    protected override solvePartOne(input: string): number {
         
         let board = this.readLines(input);
         board = this.sortBoard(board);

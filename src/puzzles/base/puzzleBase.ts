@@ -1,9 +1,9 @@
 import { PuzzleResult } from "./puzzleResult";
 import fs from 'fs'
 
-export enum PuzzleType{
-    A,
-    B
+export enum PuzzlePart{
+    ONE,
+    TWO
 }
 
 export abstract class Puzzle {
@@ -14,26 +14,26 @@ export abstract class Puzzle {
         this.puzzleNumber = puzzleNumber;
     }
 
-    protected abstract solveA(input: string): number;
+    protected abstract solvePartOne(input: string): number;
 
-    protected abstract solveB(input: string): number;
+    protected abstract solvePartTwo(input: string): number;
 
     public getId(): number{
         return this.puzzleNumber;
     }
 
-    public run (filePath: string, type: PuzzleType): PuzzleResult {
+    public run (filePath: string, type: PuzzlePart): PuzzleResult {
         const startTime = Date.now();
         const input = this.readTextFileToBuffer(filePath);
 
         try{
             let result = -1;
             switch(type){
-                case PuzzleType.A:
-                    result = this.solveA(input);
+                case PuzzlePart.ONE:
+                    result = this.solvePartOne(input);
                     break;
                 default:
-                    result = this.solveB(input);
+                    result = this.solvePartTwo(input);
             }
   
             const endTime = Date.now();
