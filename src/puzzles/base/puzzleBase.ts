@@ -1,5 +1,10 @@
 import { PuzzleResult } from "./PuzzleResult";
 
+export enum PuzzleType{
+    A,
+    B
+}
+
 export abstract class Puzzle {
 
     public puzzleNumber: number;
@@ -8,18 +13,27 @@ export abstract class Puzzle {
         this.puzzleNumber = puzzleNumber;
     }
 
-    protected abstract solve(input: string): number;
+    protected abstract solveA(input: string): number;
+
+    protected abstract solveB(input: string): number;
 
     public getId(): number{
         return this.puzzleNumber;
     }
 
-    public run (input: string): PuzzleResult {
+    public run (input: string, type: PuzzleType): PuzzleResult {
         const startTime = Date.now();
 
         try{
-            const result = this.solve(input);
-
+            let result = -1;
+            switch(type){
+                case PuzzleType.A:
+                    result = this.solveA(input);
+                    break;
+                default:
+                    result = this.solveB(input);
+            }
+  
             const endTime = Date.now();
 
             const milliseconds = (endTime - startTime);
