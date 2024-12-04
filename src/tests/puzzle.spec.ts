@@ -2,6 +2,7 @@ import { expect, test, describe } from 'vitest'
 import { Puzzle1 } from '../puzzles/puzzle_1';
 import { PuzzlePart } from '../puzzles/base/puzzleBase';
 import { Puzzle2 } from '../puzzles/puzzle_2';
+import { Puzzle3 } from '../puzzles/puzzle_3';
 
 
 describe("Puzzle 1", () => {
@@ -79,4 +80,49 @@ describe("Puzle 2", () => {
         expect(result.resultNumber).toBe(301);
 
     });
+});
+
+describe("Puzle 3", () => {
+
+    test("Get the total of muls of test file", () => {
+
+        const puzzle_3 = new Puzzle3(3);
+
+        const result = puzzle_3.runFromFile(__dirname + '/assets/test_3.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBe(161);
+
+    });
+
+    test("Get the total of muls", () => {
+
+        const puzzle_3 = new Puzzle3(3);
+
+        const result = puzzle_3.runFromFile(__dirname + '/../assets/input/3.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBe(184511516);
+
+    });
+
+    test("Get the total of muls 2 of test file", () => {
+
+        const puzzle_3 = new Puzzle3(3);
+
+        const result = puzzle_3.runFromFile(__dirname + '/assets/test_3_B.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBe(48);
+
+    });
+
+    test("Get the total of muls 2", () => {
+
+        const puzzle_3 = new Puzzle3(3);
+
+        const result = puzzle_3.runFromFile(__dirname + '/../assets/input/3.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBe(90044227);
+
+    });
+
+
 });
