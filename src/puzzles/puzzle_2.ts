@@ -6,30 +6,7 @@ export class Puzzle2 extends Puzzle {
 
         let ammountCorrect = 0;
         for(let i= 0; i < board.length;  i++){
-            let correctDifference = true;
-
-            let previousDifferences = [];
-            for(let j=0; j < board[i].length-1; j++){
-
-              const difference = board[i][j]-board[i][j+1];
-
-              const positive = difference > 0 && difference >= 1 && difference <= 3;
-              const negative = difference < 0 && difference <= -1 && difference >= -3;
-
-              if(!positive && !negative){
-                correctDifference = false;
-                break;
-              }
-
-              if(previousDifferences.length != 0 && ((previousDifferences[previousDifferences.length-1] < 0 && difference > 0) || (previousDifferences[previousDifferences.length-1] > 0 && difference < 0))){
-                correctDifference = false
-                break;
-              }
-
-              previousDifferences.push(difference);
-            }
-
-            if(correctDifference){
+            if(this.isSafe(board[i])){
                 ammountCorrect++;
             }
         }
@@ -42,68 +19,28 @@ export class Puzzle2 extends Puzzle {
 
         let ammountCorrect = 0;
         for(let i= 0; i < board.length;  i++){
-            let correctDifference = true;
 
-            let previousDifferences = [];
-            let correctedArrayOnes = false;
-            for(let j=0; j < board[i].length-1; j++){
-              let difference = board[i][j]-board[i][j+1];
-   
-              let positiveCorrect = difference > 0 && difference >= 1 && difference <= 3;
-              let negativeCorrect = difference < 0 && difference <= -1 && difference >= -3;
-              let sortingInCorrect = (previousDifferences.length != 0 
-                && ((previousDifferences[previousDifferences.length-1] < 0 && difference > 0) 
-                || (previousDifferences[previousDifferences.length-1] > 0 && difference < 0)));
+            if(this.isSafe(board[i])){
+                ammountCorrect++;
+                continue;
+            }
+            
+            for(let j = 0; j< board[i].length; j++){
+                const correctedReport = [...board[i]]
+                correctedReport.splice(j, 1);
 
-              if((!positiveCorrect && !negativeCorrect) || 
-              sortingInCorrect){
-                if(correctedArrayOnes){
-                    console.log("Check 1", board[i], board[i][j], correctedArrayOnes);
-                    correctDifference = false;
+                if(this.isSafe(correctedReport)){
+                    ammountCorrect++;
                     break;
                 }
-
-                if(j+2 <= board[i].length-1){
-                    difference = board[i][j]-board[i][j+2];
-   
-                    positiveCorrect = difference > 0 && difference >= 1 && difference <= 3;
-                    negativeCorrect = difference < 0 && difference <= -1 && difference >= -3;
-                    sortingInCorrect = (previousDifferences.length > 0 
-                        && ((previousDifferences[previousDifferences.length-1] < 0 && difference > 0) 
-                        || (previousDifferences[previousDifferences.length-1] > 0 && difference < 0)));
-
-      
-                    if((!positiveCorrect && !negativeCorrect) || 
-                    sortingInCorrect){
-                      console.log("Check 2 fail", board[i], board[i][j], correctedArrayOnes);
-                      correctDifference = false;
-                      break;
-                    }
-                }
-
-                console.log("Check 2 succes", board[i], board[i][j], correctedArrayOnes);
-                correctedArrayOnes = true;
-                previousDifferences.push(difference);
-                j++;
-          
-              }else{
-                previousDifferences.push(difference);
-              }
-
-            
             }
 
-            if(correctDifference){
-                ammountCorrect++;
-            }
         }
     
 
         
         return ammountCorrect;
     }
-
-
 
     readLines(input: string): number[][] {
 
@@ -119,6 +56,43 @@ export class Puzzle2 extends Puzzle {
 
         return response;
 
+    }
+
+    isEqual(list1:number[], list2: number[]): boolean{
+        if (list1.length !== list2.length) return false;
+
+        for (var i = 0; i < list1.length; ++i) {
+            if (list1[i] !== list2[i]) return false;
+        }
+
+        return true;
+    }
+
+    isSafe(report: number[]): boolean{
+        let correctDifference = true;
+
+        let previousDifferences = [];
+        for(let j=0; j < report.length-1; j++){
+
+          const difference = report[j] - report[j+1];
+
+          const positive = difference > 0 && difference >= 1 && difference <= 3;
+          const negative = difference < 0 && difference <= -1 && difference >= -3;
+
+          if(!positive && !negative){
+            correctDifference = false;
+            break;
+          }
+
+          if(previousDifferences.length != 0 && ((previousDifferences[previousDifferences.length-1] < 0 && difference > 0) || (previousDifferences[previousDifferences.length-1] > 0 && difference < 0))){
+            correctDifference = false
+            break;
+          }
+
+          previousDifferences.push(difference);
+        }
+
+        return correctDifference;
     }
 
 }

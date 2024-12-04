@@ -76,7 +76,7 @@ describe("Puzle 2", () => {
 
         const result = puzzle_2.runFromFile(__dirname + '/../assets/input/2.txt', PuzzlePart.TWO);
 
-        expect(result.resultNumber).toBeGreaterThan(294);
+        expect(result.resultNumber).toBe(301);
 
     });
 });
