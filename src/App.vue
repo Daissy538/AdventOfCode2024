@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Puzzle, PuzzlePart } from './puzzles/base/puzzleBase';
-import { PuzzleResult } from './puzzles/base/PuzzleResult';
+import { PuzzleResult } from './puzzles/base/puzzleResult';
 import { Puzzle1 } from './puzzles/puzzle_1';
 import {
     Listbox,
@@ -77,7 +77,7 @@ function runPuzzle(){
     </div>
   <div>
     <span>Input value</span>
-    <textarea v-model="inputText" @change=""/>
+    <textarea v-model="inputText" class="h-4/5" @change=""/>
   </div>
 
   <button class="bg-green-600 text-white px-8 py-2 rounded-lg" @click="runPuzzle">Run puzzle</button>

@@ -22,10 +22,14 @@ export abstract class Puzzle {
         return this.puzzleNumber;
     }
 
-    public run (filePath: string, type: PuzzlePart): PuzzleResult {
-        const startTime = Date.now();
+    public runFromFile(filePath: string, type: PuzzlePart): PuzzleResult {
         const input = this.readTextFileToBuffer(filePath);
 
+        return this.run(input, type);
+    }
+
+    public run (input: string, type: PuzzlePart): PuzzleResult {
+        const startTime = Date.now();
         try{
             let result = -1;
             switch(type){
