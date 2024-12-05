@@ -41,10 +41,7 @@ export class Puzzle4 extends Puzzle {
 
     readLines(input: string): string[][] {
         const response: string[][] = [];
-
-        const lines = input.split("\r\n");
-
-        console.log(lines);
+        const lines = input.split("\n");
 
         lines.forEach((line) => {
             const c = line.split("");
@@ -134,8 +131,10 @@ export class Puzzle4 extends Puzzle {
     || (topLeft === "S" && bottomRigth === "M");
 
         const hasForText = (topRigth == "M" && bottomLeft ==="S")
-    || (topLeft === "S" && bottomRigth === "M")
+    || (topRigth === "S" && bottomLeft === "M")
 
+        console.log(topLeft, bottomRigth, hasBackText);
+        console.log()
         return hasBackText && hasForText
     }
 
