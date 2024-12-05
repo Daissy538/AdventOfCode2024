@@ -7,7 +7,6 @@ export class Puzzle3 extends Puzzle {
 
         const mulInstructions = [...instruction.matchAll(regex)];
 
-
         return this.sumTotalsMuls(mulInstructions);
     }
 
@@ -42,7 +41,6 @@ export class Puzzle3 extends Puzzle {
 
         return totals;
     }
-
 
     sumTotalsMuls(mulInstructions: RegExpExecArray[]): number{
         let total = 0;

@@ -3,6 +3,7 @@ import { Puzzle1 } from '../puzzles/puzzle_1';
 import { PuzzlePart } from '../puzzles/base/puzzleBase';
 import { Puzzle2 } from '../puzzles/puzzle_2';
 import { Puzzle3 } from '../puzzles/puzzle_3';
+import { Puzzle4 } from '../puzzles/puzzle_4';
 
 
 describe("Puzzle 1", () => {
@@ -126,3 +127,34 @@ describe("Puzle 3", () => {
 
 
 });
+
+
+describe("Puzzle 4", () => {
+
+    test("Get the count xmas of test file simple", () => {
+        const puzzle_4 = new Puzzle4(4);
+
+        const result = puzzle_4.runFromFile(__dirname + '/assets/test_4_A.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBe(18);
+
+    });
+
+    test("Get the count xmas", () => {
+        const puzzle_4 = new Puzzle4(4);
+
+        const result = puzzle_4.runFromFile(__dirname + '/../assets/input/4.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBeGreaterThan(18);
+
+    });
+
+    test("Get the count mas of test file simple", () => {
+        const puzzle_4 = new Puzzle4(4);
+
+        const result = puzzle_4.runFromFile(__dirname + '/assets/test_4_B.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBe(1);
+
+    });
+})
