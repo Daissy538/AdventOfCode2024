@@ -49,18 +49,6 @@ export class Puzzle4 extends Puzzle {
     searchForString(text: string, board: string[][], row: number, col: number){
 
         //Maak rondje om index en vergroot + 1 to max length text
-
-        const foundWord = "";
-
-        row + 1
-        col + 1
-        row - 1
-        row - 1
-        col - 1
-        col - 1
-        row - 1
-        row - 1
-        
         const foundItems = new Map<string, string>();
         for(let rowI = 0, colI = 0; rowI < text.length, colI < text.length; rowI++, colI++){
 
