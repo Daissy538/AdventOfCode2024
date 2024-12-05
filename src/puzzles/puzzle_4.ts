@@ -19,12 +19,19 @@ export class Puzzle4 extends Puzzle {
     protected solvePartTwo(input: string): number {
 
         let board = this.readLines(input);
+        console.log(input);
+        console.log(board);
 
         let count = 0;
-        for(let i = 0; i < board.length; i++){
-            for(let j = 0; j < board[i].length; j++){
-                if(board[i][j] === "X"){
-                    count = count + this.searchForString("XMAS", board, i, j);
+        for(let i = 1; i < board.length-1; i++){
+            for(let j = 1; j < board[i].length-1; j++){
+                console.log(board[i][j] );
+                if(board[i][j] === "A"){
+                    const hasMas = this.searchForMas(board, i, j);
+                    console.log("HALLO", hasMas);
+                    if(hasMas){
+                        count++;
+                    }
                 }
             }
         }
@@ -37,6 +44,8 @@ export class Puzzle4 extends Puzzle {
 
         const lines = input.split("\r\n");
 
+        console.log(lines);
+
         lines.forEach((line) => {
             const c = line.split("");
             response.push(c);
@@ -47,8 +56,6 @@ export class Puzzle4 extends Puzzle {
     }
 
     searchForString(text: string, board: string[][], row: number, col: number){
-
-        //Maak rondje om index en vergroot + 1 to max length text
         const foundItems = new Map<string, string>();
         for(let rowI = 0, colI = 0; rowI < text.length, colI < text.length; rowI++, colI++){
 
@@ -108,13 +115,28 @@ export class Puzzle4 extends Puzzle {
         let count = 0;
         foundItems.forEach((value, key) => {
             if(value === text){
-                console.log(value, key, row, col);
                 count++;
             }
         });
 
         return count;
 
+    }
+
+    searchForMas( board: string[][], row: number, col: number){
+
+        const topLeft =  board[row-1][col-1];
+        const topRigth = board[row-1][col+1];
+        const bottomRigth = board[row+1][col+1];
+        const bottomLeft = board[row+1][col-1];
+
+        const hasBackText =  (topLeft === "M" && bottomRigth === "S")
+    || (topLeft === "S" && bottomRigth === "M");
+
+        const hasForText = (topRigth == "M" && bottomLeft ==="S")
+    || (topLeft === "S" && bottomRigth === "M")
+
+        return hasBackText && hasForText
     }
 
 }
