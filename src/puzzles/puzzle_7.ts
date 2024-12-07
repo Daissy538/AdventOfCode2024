@@ -1,3 +1,4 @@
+import exp from "constants";
 import { Puzzle } from "./base/puzzleBase";
 
 export class Puzzle7 extends Puzzle {
@@ -15,6 +16,20 @@ export class Puzzle7 extends Puzzle {
         return sum;
     }
 
+    protected solvePartTwo(input: string): number {
+        const calculations = this.readLines(input);
+
+        let sum = 0;
+        calculations.forEach((value) => {
+           const result =this.CanCalculate2(value[1], value[0], value[1][0]);
+           if(result){
+            sum += value[0];
+           }
+        });
+
+        return sum;
+    }
+
     private CanCalculate(numbers: number[], expected: number, total: number): boolean{
         if(numbers.length === 1 && total !== expected){
             return false;
@@ -24,14 +39,14 @@ export class Puzzle7 extends Puzzle {
         }
         
         let response = false;
-        if(total * numbers[0+1] <= expected){ 
-            if(this.CanCalculate([...numbers].splice(1), expected,total * numbers[0+1])){
+        if(total * numbers[1] <= expected){ 
+            if(this.CanCalculate([...numbers].splice(1), expected,total * numbers[1])){
                 response = true;
             }           
         }
 
-        if(total + numbers[0+1] <= expected){            
-           if( this.CanCalculate([...numbers].splice(1), expected,total + numbers[0+1])){
+        if(total + numbers[1] <= expected){            
+           if( this.CanCalculate([...numbers].splice(1), expected,total + numbers[1])){
             response = true;
            }   
         }
@@ -39,8 +54,34 @@ export class Puzzle7 extends Puzzle {
         return response;
     }
 
-    protected solvePartTwo(input: string): number {
-        throw new Error("Method not implemented.");
+    private CanCalculate2(numbers: number[], expected: number, total: number): boolean{
+        if(numbers.length === 1 && total !== expected){
+            return false;
+        }
+        else if(numbers.length === 1 && total === expected){
+            return true;
+        }
+        
+        let response = false;
+        if(total * numbers[1] <= expected){ 
+            if(this.CanCalculate2([...numbers].splice(1), expected,total * numbers[1])){
+                response = true;
+            }           
+        }
+
+        if(total + numbers[1] <= expected){           
+           if( this.CanCalculate2([...numbers].splice(1), expected,total + numbers[1])){
+             response = true;
+           }   
+        }
+
+        if(Number(total.toString() + numbers[1].toString()) <= expected){
+            if(this.CanCalculate2([...numbers].splice(1),  expected, Number(total.toString() + numbers[1].toString()))){
+                response = true;
+            }  
+        }
+
+        return response;
     }
 
     private readLines(input: string): [number,number[]][] {

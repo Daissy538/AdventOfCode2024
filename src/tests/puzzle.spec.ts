@@ -237,7 +237,7 @@ describe("Puzzle 7", () => {
 
         const result = puzzle_7.runFromFile(__dirname + '/assets/test_7.txt', PuzzlePart.ONE);
 
-        expect(result.resultNumber).toBe(3965);
+        expect(result.resultNumber).toBe(3749);
     })
 
     test("Bridge Repair", () => {
@@ -245,7 +245,24 @@ describe("Puzzle 7", () => {
 
         const result = puzzle_7.runFromFile(__dirname + '/../assets/input/7.txt', PuzzlePart.ONE);
 
-        expect(result.resultNumber).toBeGreaterThan(2314935962174);
+        expect(result.resultNumber).toBe(2314935962622);
+
+    });
+
+    test("Bridge Repair with test file", () => {
+        const puzzle_7 = new Puzzle7(7);
+
+        const result = puzzle_7.runFromFile(__dirname + '/assets/test_7.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBe(11387);
+    })
+
+    test("Bridge Repair", () => {
+        const puzzle_7 = new Puzzle7(7);
+
+        const result = puzzle_7.runFromFile(__dirname + '/../assets/input/7.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBe(2314935962622);
 
     });
 })
