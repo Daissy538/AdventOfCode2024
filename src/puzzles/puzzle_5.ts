@@ -1,4 +1,3 @@
-import { IncomingMessage } from "http";
 import { Puzzle } from "./base/puzzleBase";
 
 export class Puzzle5 extends Puzzle {
