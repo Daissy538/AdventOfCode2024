@@ -188,4 +188,23 @@ describe("Puzzle 5", () => {
         expect(result.resultNumber).toBe(7307);
 
     });
+
+    
+    test("Print Queue from test file", () => {
+        const puzzle_5 = new Puzzle5(5);
+
+        const result = puzzle_5.runFromFile(__dirname + '/assets/test_5.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBe(123);
+
+    });
+
+    test("Print Queuer", () => {
+        const puzzle_5 = new Puzzle5(5);
+
+        const result = puzzle_5.runFromFile(__dirname + '/../assets/input/5.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBeGreaterThan(123);
+
+    });
 })

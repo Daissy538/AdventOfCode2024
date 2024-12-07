@@ -1,3 +1,4 @@
+import { IncomingMessage } from "http";
 import { Puzzle } from "./base/puzzleBase";
 
 export class Puzzle5 extends Puzzle {
@@ -29,7 +30,30 @@ export class Puzzle5 extends Puzzle {
     }
 
     protected solvePartTwo(input: string): number {
-        throw new Error("Method not implemented.");
+        const orders = this.getOrderMap(input);
+        const updates = this.getTheUpdates(input);
+
+        const inCorrectUpdates: number[][] = []
+        updates.forEach((update) => {
+
+            //sort list in correct order
+            const sortedList = this.sortUpdate([...update], orders);
+
+            //compare list if it is still same
+            const isCorrectOrder = JSON.stringify(sortedList) === JSON.stringify(update);
+
+            //when correct order
+            if(!isCorrectOrder){
+              inCorrectUpdates.push(sortedList);
+            }
+        });
+
+        const sum =inCorrectUpdates.map((value) =>  { 
+            return value[Math.round(value.length-1 - (value.length-1)/2)];
+        })
+        .reduce((preV, curV) => preV + curV);
+
+        return sum;
     }
 
     sortUpdate(update: number[], orders: number[][]){
