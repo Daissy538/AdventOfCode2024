@@ -6,6 +6,7 @@ import { Puzzle3 } from '../puzzles/puzzle_3';
 import { Puzzle4 } from '../puzzles/puzzle_4';
 import { Puzzle5 } from '../puzzles/puzzle_5';
 import {Puzzle6} from "../puzzles/puzzle_6.ts";
+import { Puzzle7 } from '../puzzles/puzzle_7.ts';
 
 
 describe("Puzzle 1", () => {
@@ -227,6 +228,24 @@ describe("Puzzle 6", () => {
         expect(result.resultNumber).toBeGreaterThan(41);
 
     });
+})
 
+describe("Puzzle 7", () => {
 
+    test("Bridge Repair with test file", () => {
+        const puzzle_7 = new Puzzle7(7);
+
+        const result = puzzle_7.runFromFile(__dirname + '/assets/test_7.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBe(3965);
+    })
+
+    test("Bridge Repair", () => {
+        const puzzle_7 = new Puzzle7(7);
+
+        const result = puzzle_7.runFromFile(__dirname + '/../assets/input/7.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBeGreaterThan(2314935962174);
+
+    });
 })
