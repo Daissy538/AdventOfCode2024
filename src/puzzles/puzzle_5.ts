@@ -22,7 +22,7 @@ export class Puzzle5 extends Puzzle {
 
 
         const sum =correctUpdates.map((value) =>  { 
-            return value[Math.round(value.length-1 - (value.length-1)/2)];
+            return value[Math.floor(value.length/2)];
         })
         .reduce((preV, curV) => preV + curV);
         return sum;
@@ -48,7 +48,7 @@ export class Puzzle5 extends Puzzle {
         });
 
         const sum =inCorrectUpdates.map((value) =>  { 
-            return value[Math.round(value.length-1 - (value.length-1)/2)];
+            return value[Math.floor(value.length/2)];
         })
         .reduce((preV, curV) => preV + curV);
 
