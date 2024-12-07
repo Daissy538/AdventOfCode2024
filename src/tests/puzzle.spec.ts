@@ -5,6 +5,7 @@ import { Puzzle2 } from '../puzzles/puzzle_2';
 import { Puzzle3 } from '../puzzles/puzzle_3';
 import { Puzzle4 } from '../puzzles/puzzle_4';
 import { Puzzle5 } from '../puzzles/puzzle_5';
+import {Puzzle6} from "../puzzles/puzzle_6.ts";
 
 
 describe("Puzzle 1", () => {
@@ -168,7 +169,6 @@ describe("Puzzle 4", () => {
 
     });
 })
-
 describe("Puzzle 5", () => {
 
     test("Print Queue from test file", () => {
@@ -207,4 +207,26 @@ describe("Puzzle 5", () => {
         expect(result.resultNumber).toBeGreaterThan(123);
 
     });
+})
+
+describe("Puzzle 6", () => {
+
+    test("Guard Gallivant with test file", () => {
+        const puzzle_6 = new Puzzle6(6);
+
+        const result = puzzle_6.runFromFile(__dirname + '/assets/test_6.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBe(41);
+    })
+
+    test("Guard Gallivant", () => {
+        const puzzle_6 = new Puzzle6(6);
+
+        const result = puzzle_6.runFromFile(__dirname + '/../assets/input/6.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBeGreaterThan(41);
+
+    });
+
+
 })
