@@ -19,16 +19,12 @@ export class Puzzle4 extends Puzzle {
     protected solvePartTwo(input: string): number {
 
         let board = this.readLines(input);
-        console.log(input);
-        console.log(board);
 
         let count = 0;
         for(let i = 1; i < board.length-1; i++){
             for(let j = 1; j < board[i].length-1; j++){
-                console.log(board[i][j] );
                 if(board[i][j] === "A"){
                     const hasMas = this.searchForMas(board, i, j);
-                    console.log("HALLO", hasMas);
                     if(hasMas){
                         count++;
                     }
@@ -133,8 +129,6 @@ export class Puzzle4 extends Puzzle {
         const hasForText = (topRigth == "M" && bottomLeft ==="S")
     || (topRigth === "S" && bottomLeft === "M")
 
-        console.log(topLeft, bottomRigth, hasBackText);
-        console.log()
         return hasBackText && hasForText
     }
 
