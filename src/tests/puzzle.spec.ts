@@ -171,7 +171,7 @@ describe("Puzzle 4", () => {
 
 describe("Puzzle 5", () => {
 
-    test("Get sum page number from test file", () => {
+    test("Print Queue from test file", () => {
         const puzzle_5 = new Puzzle5(5);
 
         const result = puzzle_5.runFromFile(__dirname + '/assets/test_5.txt', PuzzlePart.ONE);
@@ -180,7 +180,7 @@ describe("Puzzle 5", () => {
 
     });
 
-    test("Get the count xmas", () => {
+    test("Print Queuer", () => {
         const puzzle_5 = new Puzzle5(5);
 
         const result = puzzle_5.runFromFile(__dirname + '/../assets/input/5.txt', PuzzlePart.ONE);
