@@ -7,6 +7,7 @@ import { Puzzle4 } from '../puzzles/puzzle_4';
 import { Puzzle5 } from '../puzzles/puzzle_5';
 import {Puzzle6} from "../puzzles/puzzle_6.ts";
 import { Puzzle7 } from '../puzzles/puzzle_7.ts';
+import { Puzzle8 } from '../puzzles/puzzle_8.ts';
 
 
 describe("Puzzle 1", () => {
@@ -228,6 +229,14 @@ describe("Puzzle 6", () => {
         expect(result.resultNumber).toBeGreaterThan(41);
 
     });
+
+    test("Guard Gallivant with test file", () => {
+        const puzzle_6 = new Puzzle6(6);
+
+        const result = puzzle_6.runFromFile(__dirname + '/assets/test_6.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBe(6);
+    })
 })
 
 describe("Puzzle 7", () => {
@@ -265,4 +274,23 @@ describe("Puzzle 7", () => {
         expect(result.resultNumber).toBe(2314935962622);
 
     });
+})
+
+describe("Puzzle 8", () => {
+    test("Resonant Collinearity with test file", () => {
+        const puzzle_8 = new Puzzle8(8);
+
+        const result = puzzle_8.runFromFile(__dirname + '/assets/test_8.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBe(14);
+    })
+
+    test.only("Resonant Collinearity", () => {
+        const puzzle_8 = new Puzzle8(8);
+
+        const result = puzzle_8.runFromFile(__dirname + '/../assets/input/8.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBeGreaterThan(14);
+        expect(result.resultNumber).toBeLessThan(18700);
+    })
 })
