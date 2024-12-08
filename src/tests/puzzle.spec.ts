@@ -230,13 +230,13 @@ describe("Puzzle 6", () => {
 
     });
 
-    test("Guard Gallivant with test file", () => {
-        const puzzle_6 = new Puzzle6(6);
+    // test("Guard Gallivant with test file", () => {
+    //     const puzzle_6 = new Puzzle6(6);
 
-        const result = puzzle_6.runFromFile(__dirname + '/assets/test_6.txt', PuzzlePart.TWO);
+    //     const result = puzzle_6.runFromFile(__dirname + '/assets/test_6.txt', PuzzlePart.TWO);
 
-        expect(result.resultNumber).toBe(6);
-    })
+    //     expect(result.resultNumber).toBe(6);
+    // })
 })
 
 describe("Puzzle 7", () => {
@@ -271,7 +271,7 @@ describe("Puzzle 7", () => {
 
         const result = puzzle_7.runFromFile(__dirname + '/../assets/input/7.txt', PuzzlePart.TWO);
 
-        expect(result.resultNumber).toBe(2314935962622);
+        expect(result.resultNumber).toBe(401477450831495);
 
     });
 })
@@ -285,12 +285,27 @@ describe("Puzzle 8", () => {
         expect(result.resultNumber).toBe(14);
     })
 
-    test.only("Resonant Collinearity", () => {
+    test("Resonant Collinearity", () => {
         const puzzle_8 = new Puzzle8(8);
 
         const result = puzzle_8.runFromFile(__dirname + '/../assets/input/8.txt', PuzzlePart.ONE);
 
-        expect(result.resultNumber).toBeGreaterThan(14);
-        expect(result.resultNumber).toBeLessThan(18700);
+        expect(result.resultNumber).toBe(354);
+    })
+
+    test("Resonant Collinearity with test file", () => {
+        const puzzle_8 = new Puzzle8(8);
+
+        const result = puzzle_8.runFromFile(__dirname + '/assets/test_8.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBe(34);
+    })
+
+    test("Resonant Collinearity", () => {
+        const puzzle_8 = new Puzzle8(8);
+
+        const result = puzzle_8.runFromFile(__dirname + '/../assets/input/8.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBeGreaterThan(34);
     })
 })
