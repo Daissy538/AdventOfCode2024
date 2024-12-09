@@ -8,6 +8,7 @@ import { Puzzle5 } from '../puzzles/puzzle_5';
 import {Puzzle6} from "../puzzles/puzzle_6.ts";
 import { Puzzle7 } from '../puzzles/puzzle_7.ts';
 import { Puzzle8 } from '../puzzles/puzzle_8.ts';
+import { Puzzle9 } from '../puzzles/puzzle_9.ts';
 
 
 describe("Puzzle 1", () => {
@@ -308,4 +309,15 @@ describe("Puzzle 8", () => {
 
         expect(result.resultNumber).toBeGreaterThan(34);
     })
+})
+
+describe("Puzzle 9", () => {
+    test.only("Disk fragmeter from test file", () => {
+        const puzzle_9 = new Puzzle9(9);
+
+        const result = puzzle_9.runFromFile(__dirname + '/assets/test_9.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBe(1928);
+    });
+
 })
