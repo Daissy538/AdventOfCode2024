@@ -312,7 +312,7 @@ describe("Puzzle 8", () => {
 })
 
 describe("Puzzle 9", () => {
-    test("Disk fragmeter from test file", () => {
+    test("Disk fragmeter from test file 1", () => {
         const puzzle_9 = new Puzzle9(9);
 
         const result = puzzle_9.runFromFile(__dirname + '/assets/test_9.txt', PuzzlePart.ONE);
@@ -320,7 +320,7 @@ describe("Puzzle 9", () => {
         expect(result.resultNumber).toBe(1928);
     });
 
-    test("Disk fragmeter", () => {
+    test("Disk fragmeter 1", () => {
         const puzzle_9 = new Puzzle9(9);
 
         const result = puzzle_9.runFromFile(__dirname + '/../assets/input/9.txt', PuzzlePart.ONE);
@@ -328,11 +328,19 @@ describe("Puzzle 9", () => {
         expect(result.resultNumber).toBe(6471961544878);
     });
 
-    test("Disk fragmeter from test file", () => {
+    test("Disk fragmeter from test file 2", () => {
         const puzzle_9 = new Puzzle9(9);
 
         const result = puzzle_9.runFromFile(__dirname + '/assets/test_9.txt', PuzzlePart.TWO);
 
         expect(result.resultNumber).toBe(2858);
+    });
+
+    test("Disk fragmeter 2", () => {
+        const puzzle_9 = new Puzzle9(9);
+
+        const result = puzzle_9.runFromFile(__dirname + '/../assets/input/9.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBeGreaterThan(6471961544878);
     });
 })

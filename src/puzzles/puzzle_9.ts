@@ -33,54 +33,40 @@ export class Puzzle9 extends Puzzle {
 
         let blocks: string[] = this.createBlockOverview(numbers);
 
-        console.log(blocks);
-        let fileString = "";
-        for(let i = blocks.length-1; i > 0 ; i--){
-            console.log("block", blocks[i], "blocks i", blocks[i-1], "string", fileString);
-            if((blocks[i]  === "." ||  blocks[i] !== blocks[i+1]) && fileString.length > 0){
+        let index = blocks.length -1;
+        while(index >= 0){
+            if(blocks[index] !== "."){//Found file
+                let fileId = blocks[index];
+                let fileSize = 1;
 
-                let dotString = "";
-
-                for(let j = 0; j < blocks.length; j++){
-
-                    if(blocks[j] !=="." && dotString.length > 0){
-                        console.log("check ", "file",fileString, "dot", dotString);
-                        if(dotString.length >= fileString.length){
-                            for(let x = 0; x < dotString.length; x ++){
-                                blocks[j-1-x] = blocks[i + x];
-                                blocks[i+1+x] = "."
-                            }
-                        }
-
-                        dotString = "";
-
-                        continue;
-                    }
-                    else if(blocks[j] !=="."){
-                        dotString = "";
-                        continue;
-                    }
-
-                    dotString = dotString+blocks[j];
+                for(let i = index-1; blocks[i] === fileId; i--){ // get File size
+                    fileSize++
                 }
 
+                for(let i = 0; i < blocks.length; i++){ // search for empty space
+                    if(blocks[i] === "." && i < index){
+                        let emptySpaceCount = 0;
+                        for(let j = i; blocks[j] === "."; j++){//Get empyt space size
+                            emptySpaceCount++;
+                        }
 
-                fileString = "";
-                continue;
-            }else if(blocks[i]  === "."){
-                fileString = "";
-                continue;
+                        if(fileSize <= emptySpaceCount){ // if file fits in empty space, then replace
+                            for(let x = 0; x < fileSize; x++){
+                                blocks[i+x] = fileId;
+                                blocks[index-x] = ".";
+                            }
+
+                            break;
+                        }
+                    }
+                }
+
+                index = index - fileSize;
+            }else{
+                index--;
             }
 
-            //search whole files
-            fileString = fileString+blocks[i];
-
         }
-
-        console.log(blocks);
-
-
-
 
         return this.calculateSum(blocks);
     }
