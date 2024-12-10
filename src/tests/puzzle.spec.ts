@@ -9,6 +9,7 @@ import {Puzzle6} from "../puzzles/puzzle_6.ts";
 import { Puzzle7 } from '../puzzles/puzzle_7.ts';
 import { Puzzle8 } from '../puzzles/puzzle_8.ts';
 import { Puzzle9 } from '../puzzles/puzzle_9.ts';
+import {Puzzle10} from "../puzzles/puzzle_10.ts";
 
 
 describe("Puzzle 1", () => {
@@ -342,5 +343,25 @@ describe("Puzzle 9", () => {
         const result = puzzle_9.runFromFile(__dirname + '/../assets/input/9.txt', PuzzlePart.TWO);
 
         expect(result.resultNumber).toBeGreaterThan(6471961544878);
+    });
+})
+
+
+describe("Puzzle 10", () => {
+    test("Hoof It from test file 1", () => {
+        const puzzle_10 = new Puzzle10(10);
+
+        const result = puzzle_10.runFromFile(__dirname + '/assets/test_10.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBe(36);
+    });
+
+    test("Hoof It from1", () => {
+        const puzzle_10 = new Puzzle10(10);
+
+        const result = puzzle_10.runFromFile(__dirname + '/../assets/input/10.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBeGreaterThan(36);
+
     });
 })
