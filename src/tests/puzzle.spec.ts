@@ -131,6 +131,21 @@ describe("Puzle 3", () => {
 
     });
 
+    test("Guard Gallivant loop obstructions with test file", () => {
+        const puzzle_6 = new Puzzle6(6);
+
+        const result = puzzle_6.runFromFile(__dirname + '/assets/test_6.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBe(6);
+    })
+
+    test("Guard Gallivant loop obstructions", () => {
+        const puzzle_6 = new Puzzle6(6);
+
+        const result = puzzle_6.runFromFile(__dirname + '/../assets/input/6.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBeGreaterThan(6);
+    })
 
 });
 
