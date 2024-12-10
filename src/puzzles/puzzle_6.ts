@@ -80,10 +80,79 @@ export class Puzzle6 extends Puzzle {
         return visitedItems.size;
     }
 
-
-
     protected solvePartTwo(input: string): number {
-        return 0;
+        let guardCoordinates = this.findGuardCoordinates(map);
+        const visitedItems: Set<string> = new Set<string>();
+        visitedItems.add(guardCoordinates[0]+"+"+guardCoordinates[1]);
+
+        let direction = map[guardCoordinates[0]][guardCoordinates[1]];
+
+        let walking = true
+        while(walking){
+
+            switch (direction){
+                case "^":
+                    if(guardCoordinates[0]-1 === -1){
+                        walking = false;
+                        break;
+                    }
+                    const up = map[guardCoordinates[0]-1][guardCoordinates[1]];
+                    if(up === "#"){
+                        direction = ">";
+                    }
+                    else{
+                        guardCoordinates = [guardCoordinates[0]-1,guardCoordinates[1]];
+                        visitedItems.add(guardCoordinates[0]+"+"+guardCoordinates[1]);
+                    }
+                    break;
+                case ">":
+                    if(guardCoordinates[1]+1 === map[guardCoordinates[0]].length){
+                        walking = false;
+                        break;
+                    }
+                    const right = map[guardCoordinates[0]][guardCoordinates[1]+1];
+
+                    if(right === "#"){
+                        direction = "v";
+                    }
+                    else{
+                        guardCoordinates = [guardCoordinates[0],guardCoordinates[1]+1];
+                        visitedItems.add(guardCoordinates[0]+"+"+guardCoordinates[1]);
+                    }
+                    break;
+                case "<":
+                    if(guardCoordinates[1]-1 === -1){
+                        walking = false;
+                        break;
+                    }
+                    const left = map[guardCoordinates[0]][guardCoordinates[1]-1];
+
+                    if(left === "#"){
+                        direction = "^";
+                    }
+                    else{
+                        guardCoordinates = [guardCoordinates[0],guardCoordinates[1]-1];
+                        visitedItems.add(guardCoordinates[0]+"+"+guardCoordinates[1]);
+                    }
+                    break;
+                case "v":
+                    if(guardCoordinates[0]+1 === map.length){
+                        walking = false;
+                        break;
+                    }
+
+                    const down = map[guardCoordinates[0]+1][guardCoordinates[1]];
+                    if(down === "#"){
+                        direction = "<";
+                    }
+                    else{
+                        guardCoordinates = [guardCoordinates[0]+1,guardCoordinates[1]];
+
+                        visitedItems.add(guardCoordinates[0]+"+"+guardCoordinates[1]);
+                    }
+                    break;
+            }
+        }
     }
 
     private findGuardCoordinates(map: string[][]): [number, number]{

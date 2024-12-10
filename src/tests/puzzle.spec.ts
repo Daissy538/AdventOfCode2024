@@ -361,7 +361,24 @@ describe("Puzzle 10", () => {
 
         const result = puzzle_10.runFromFile(__dirname + '/../assets/input/10.txt', PuzzlePart.ONE);
 
-        expect(result.resultNumber).toBeGreaterThan(36);
+        expect(result.resultNumber).toBe(822);
+
+    });
+
+    test("Hoof It from test file 2", () => {
+        const puzzle_10 = new Puzzle10(10);
+
+        const result = puzzle_10.runFromFile(__dirname + '/assets/test_10.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBe(81);
+    });
+
+    test("Hoof It from 2", () => {
+        const puzzle_10 = new Puzzle10(10);
+
+        const result = puzzle_10.runFromFile(__dirname + '/../assets/input/10.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBe(1801);
 
     });
 })
