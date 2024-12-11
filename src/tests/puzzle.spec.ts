@@ -10,6 +10,7 @@ import { Puzzle7 } from '../puzzles/puzzle_7.ts';
 import { Puzzle8 } from '../puzzles/puzzle_8.ts';
 import { Puzzle9 } from '../puzzles/puzzle_9.ts';
 import {Puzzle10} from "../puzzles/puzzle_10.ts";
+import {Puzzle11} from "../puzzles/puzzle_11.ts";
 
 
 describe("Puzzle 1", () => {
@@ -396,4 +397,31 @@ describe("Puzzle 10", () => {
         expect(result.resultNumber).toBe(1801);
 
     });
+})
+
+describe("Puzzle 11", () => {
+    test("Plutonian Pebbles from test file 1", () => {
+        const puzzle_11 = new Puzzle11(11);
+
+        const result = puzzle_11.runFromFile(__dirname + '/assets/test_11.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBe(55312);
+    });
+
+    test("Plutonian Pebbles", () => {
+        const puzzle_11 = new Puzzle11(11);
+
+        const result = puzzle_11.runFromFile(__dirname + '/../assets/input/11.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBe(233875);
+    });
+
+    test("Plutonian Pebbles 2", () => {
+        const puzzle_11 = new Puzzle11(11);
+
+        const result = puzzle_11.runFromFile(__dirname + '/assets/test_11.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBeGreaterThan(55312);
+    });
+
 })

@@ -16,7 +16,7 @@ export abstract class Puzzle {
 
     protected abstract solvePartOne(input: string): number;
 
-    protected abstract solvePartTwo(input: string): number;
+    protected abstract solvePartTwo(input: string): bigint;
 
     public getId(): number{
         return this.puzzleNumber;
