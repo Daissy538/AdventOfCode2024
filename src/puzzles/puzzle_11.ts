@@ -15,39 +15,46 @@ export class Puzzle11 extends Puzzle {
     protected solvePartTwo(input: string): bigint {
         const stones = this.readLinesNumber(input);
 
-        const map: Map<bigint, bigint> = new Map();
+        let map: Map<bigint, bigint> = new Map();
 
-        let queue: bigint[] = stones;
-        for (let index =0; index < 75; index++ ){
-
-            const newQueue: bigint[] = [];
-            queue.forEach((item) => {
-                if(map.has(item)){
-                    map.set(item, map.get(item)+BigInt(1));
-                }else{
-                    map.set(item, BigInt(1));
-                }
-
-                if(item === BigInt(0)){
-                    newQueue.push(BigInt(1));
-                }else if(item.toString().length%2 == 0){
-                    const part1 = BigInt(item.toString().substring(0, item.toString().length/2));
-                    const part2 = BigInt(item.toString().substring((item.toString().length/2), item.toString().length));
-
-                    newQueue.push(part1)
-                    newQueue.push(part2)
-                }else{
-                    newQueue.push(item*BigInt(2024));
-                }
-
-            })
-
-            queue = newQueue;
+        for(let i = 0; i < stones.length; i++){
+            if(map.has(stones[i])){
+                map.set(stones[i], map.get(stones[i])+1n);
+            }else{
+                map.set(stones[i], 1n);
+            }
         }
 
-        let sum:bigint = BigInt(0);
+        for(let sneeze = 0; sneeze < 75; sneeze++){
+
+            const newMap = new Map<bigint, bigint>();
+
+            for(let entry of Array.from(map)){
+                const key = entry[0];
+                const value = entry[1];
+
+                const keyString = key.toString();
+
+                if(key === 0n){
+                    newMap.set(1n, newMap.has(1n)?newMap.get(1n)+value : value);
+                }else if(keyString.length%2 == 0){
+                    const part1 = BigInt(keyString.substring(0, keyString.length/2));
+                    const part2 = BigInt(keyString.substring(keyString.length/2, keyString.length));
+
+                    newMap.set(part1, newMap.has(part1)?newMap.get(part1)+value : value);
+                    newMap.set(part2, newMap.has(part2)?newMap.get(part2)+value : value);
+                }else{
+                    const multi = key * 2024n;
+                    newMap.set(multi, newMap.has(multi)?newMap.get(multi)+value:value);
+                }
+            }
+
+            map = newMap;
+        }
+
+        let sum:bigint = 0n;
         map.forEach((value) => {
-            sum = sum + BigInt(value);
+            sum = sum + value;
         })
 
         return sum;
@@ -82,6 +89,8 @@ export class Puzzle11 extends Puzzle {
 
         return sum
     }
+
+
 
     private checkFor0 (stone: string): string {
         if(stone.startsWith("0")){

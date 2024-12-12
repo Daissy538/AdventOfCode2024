@@ -419,9 +419,9 @@ describe("Puzzle 11", () => {
     test("Plutonian Pebbles 2", () => {
         const puzzle_11 = new Puzzle11(11);
 
-        const result = puzzle_11.runFromFile(__dirname + '/assets/test_11.txt', PuzzlePart.TWO);
+        const result = puzzle_11.runFromFile(__dirname + '/../assets/input/11.txt', PuzzlePart.TWO);
 
-        expect(result.resultNumber).toBeGreaterThan(55312);
+        expect(result.resultNumber).toBeGreaterThan(65601038650482);
     });
 
 })
