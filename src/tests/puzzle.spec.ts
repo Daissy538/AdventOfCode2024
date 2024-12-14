@@ -11,6 +11,7 @@ import { Puzzle8 } from '../puzzles/puzzle_8.ts';
 import { Puzzle9 } from '../puzzles/puzzle_9.ts';
 import {Puzzle10} from "../puzzles/puzzle_10.ts";
 import {Puzzle11} from "../puzzles/puzzle_11.ts";
+import {Puzzle12} from "../puzzles/puzzle_12.ts";
 
 
 describe("Puzzle 1", () => {
@@ -424,4 +425,23 @@ describe("Puzzle 11", () => {
         expect(result.resultNumber).toBeGreaterThan(65601038650482);
     });
 
+})
+
+describe("Puzzle 12", () => {
+
+    test("Garden Groups from test file 1", () => {
+        const puzzle_12 = new Puzzle12(12);
+
+        const result = puzzle_12.runFromFile(__dirname + '/assets/test_12.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBe(772);
+    });
+
+    test("Garden Groups 1", () => {
+        const puzzle_12 = new Puzzle12(12);
+
+        const result = puzzle_12.runFromFile(__dirname + '/../assets/input/12.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBeGreaterThan(140);
+    });
 })
