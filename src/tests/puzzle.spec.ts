@@ -442,6 +442,6 @@ describe("Puzzle 12", () => {
 
         const result = puzzle_12.runFromFile(__dirname + '/../assets/input/12.txt', PuzzlePart.ONE);
 
-        expect(result.resultNumber).toBeGreaterThan(140);
+        expect(result.resultNumber).toBe(1374934);
     });
 })

@@ -33,7 +33,12 @@ export class Puzzle12 extends Puzzle {
         for(let row = 0; row < plod.length; row++){
             for(let col = 0; col < plod[row].length; col++){
                 if(!plod[row][col].visited){
-                    sum = sum + this.searchFlowerBad(plod, plod[row][col]);
+                    const visited = this.searchFlowerBad(plod, plod[row][col]);
+
+                    let edge = 0;
+                    visited.forEach((a) => {edge = edge + a.edgesCount});
+
+                    sum = sum + (visited.length * edge);
                 }
             }
         }
@@ -47,7 +52,7 @@ export class Puzzle12 extends Puzzle {
         return 0n;
     }
 
-    private searchFlowerBad(plod: Node[][], start: Node): number{
+    private searchFlowerBad(plod: Node[][], start: Node): Node[]{
 
         const visited: Node[] = [];
         const queue: Node[] = [start];
@@ -97,10 +102,7 @@ export class Puzzle12 extends Puzzle {
             }
         }
 
-        let edge = 0;
-        visited.forEach((a) => {edge = edge + a.edgesCount});
-
-        return visited.length * edge;
+        return visited;
     }
 
     private readLines(input: string): Node[][] {
