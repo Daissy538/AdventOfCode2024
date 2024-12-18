@@ -445,6 +445,14 @@ describe("Puzzle 12", () => {
 
         expect(result.resultNumber).toBe(1374934);
     });
+
+    test("Garden Groups from test file 2", () => {
+        const puzzle_12 = new Puzzle12(12);
+
+        const result = puzzle_12.runFromFile(__dirname + '/assets/test_12.txt', PuzzlePart.TWO);
+
+        expect(result.resultNumber).toBe(436);
+    });
 })
 
 
