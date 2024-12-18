@@ -12,6 +12,7 @@ import { Puzzle9 } from '../puzzles/puzzle_9.ts';
 import {Puzzle10} from "../puzzles/puzzle_10.ts";
 import {Puzzle11} from "../puzzles/puzzle_11.ts";
 import {Puzzle12} from "../puzzles/puzzle_12.ts";
+import {Puzzle14} from "../puzzles/puzzle_14.ts";
 
 
 describe("Puzzle 1", () => {
@@ -444,4 +445,25 @@ describe("Puzzle 12", () => {
 
         expect(result.resultNumber).toBe(1374934);
     });
+})
+
+
+describe("Puzzle 14", () => {
+
+    test("Restroom Redoubt from test file 1", () => {
+        const puzzle_14 = new Puzzle14(14, 7, 11);
+
+        const result = puzzle_14.runFromFile(__dirname + '/assets/test_14.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBe(12);
+    });
+
+    test("Restroom Redoubt 1", () => {
+        const puzzle_14 = new Puzzle14(14, 103, 101);
+
+        const result = puzzle_14.runFromFile(__dirname + '/../assets/input/14.txt', PuzzlePart.ONE);
+
+        expect(result.resultNumber).toBeGreaterThan(215615520);
+    });
+
 })
